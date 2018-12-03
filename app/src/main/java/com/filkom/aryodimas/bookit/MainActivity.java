@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.main_frame,movieListFragment).commit();
+
         }
 
 
