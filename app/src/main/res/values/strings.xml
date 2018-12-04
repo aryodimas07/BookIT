@@ -13,4 +13,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_movie">Title Movie</string>
+    <string name="detail_movie">Detail Movie</string>
+    <string name="date_movie">Release Date</string>
 </resources>
