@@ -1,7 +1,6 @@
 package com.filkom.aryodimas.bookit;
 
 import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -9,19 +8,51 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
+import java.util.ArrayList;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class BookFilmActivity extends AppCompatActivity {
+
     private DrawerLayout mDrawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_book_film);
 
-        initNavbar();
-        getNowPlayingFragment();
-        getHotMovieFragment();
+//        initNavbar();
+        initSpinner();
+    }
+
+    private void initSpinner() {
+        Spinner spinnerLoc = (Spinner) findViewById(R.id.spinner_location);
+
+        List<String> location = new ArrayList<String>();
+        location.add("Malang");
+        location.add("Jakarta");
+        location.add("Surabaya");
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, location);
+
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinnerLoc.setAdapter(dataAdapter);
+
+        Spinner spinnerTicket = (Spinner) findViewById(R.id.spinner_tickets);
+
+        List<String> tickets = new ArrayList<String>();
+        tickets.add("1");
+        tickets.add("2");
+        tickets.add("3");
+
+        ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tickets);
+
+        dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinnerTicket.setAdapter(dataAdapter1);
     }
 
     private void initNavbar() {
@@ -73,24 +104,4 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
     }
-
-    private void getNowPlayingFragment(){
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment1Container, new NowPlayingFragment()).commit();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                mDrawerLayout.openDrawer(GravityCompat.START);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void getHotMovieFragment() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment2Container, new HotMovieFragment()).commit();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment3Container, new HotMovieFragment()).commit();
-    }
-
 }

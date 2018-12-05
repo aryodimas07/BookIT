@@ -14,5 +14,11 @@
     <string name="title_movie">Title Movie</string>
     <string name="detail_movie">Detail Movie</string>
     <string name="date_movie">Release Date</string>
+    <string name="film_s_title">Film\'s Title</string>
+    <string name="date">date</string>
+    <string name="duration">duration</string>
+    <string name="location">Location</string>
+    <string name="ticket">Ticket</string>
+    <string name="buy">buy</string>
 
 </resources>

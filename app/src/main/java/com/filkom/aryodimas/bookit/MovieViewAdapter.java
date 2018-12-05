@@ -1,6 +1,7 @@
 package com.filkom.aryodimas.bookit;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +30,14 @@ public class MovieViewAdapter extends RecyclerView.Adapter<MovieViewAdapter.Movi
         Movie movie = movieList.get(position);
 
         holder.ivMovie.setImageResource(movie.movPicId);
+        holder.ivMovie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, BookFilmActivity.class);
+                intent.putExtra("title", movieList.get(position).title);
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
