@@ -18,6 +18,13 @@
     <string name="price_order">Rp. 50.000</string>
     <string name="cinema_location">Cinema XXI</string>
 
+    <string name="film_s_title">Film\'s Title</string>
+    <string name="date">date</string>
+    <string name="duration">duration</string>
+    <string name="location">Location</string>
+    <string name="ticket">Ticket</string>
+    <string name="buy">buy</string>
+
     <string name="image_movie_1">https://www.joblo.com/assets/images/joblo/posters/2018/12/captain_marvel.jpg</string>
     <string name="image_movie_2">https://www.joblo.com/assets/images/joblo/posters/2018/12/once-upon-a-deadpool-poster-heaven.jpg</string>
     <string name="image_movie_3">https://www.joblo.com/assets/images/joblo/posters/2018/11/bumblebee-final-poster.jpg</string>

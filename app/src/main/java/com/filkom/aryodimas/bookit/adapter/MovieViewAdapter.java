@@ -1,12 +1,14 @@
 package com.filkom.aryodimas.bookit.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.filkom.aryodimas.bookit.BookFilmActivity;
 import com.filkom.aryodimas.bookit.R;
 import com.filkom.aryodimas.bookit.model.MovieModel;
 import com.squareup.picasso.Picasso;
@@ -31,9 +33,17 @@ public class MovieViewAdapter extends RecyclerView.Adapter<MovieViewAdapter.Movi
 
     @Override
     public void onBindViewHolder(MovieViewHolder holder, final int position) {
-        MovieModel movieModel = movieModelList.get(position);
+        final MovieModel movieModel = movieModelList.get(position);
 
         Picasso.with(mContext).load(movieModel.getMoviePicUrl()).fit().into(holder.ivMovie);
+        holder.ivMovie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, BookFilmActivity.class);
+                intent.putExtra("title", movieModel.getTitle());
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override

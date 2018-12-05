@@ -1,5 +1,6 @@
 package com.filkom.aryodimas.bookit;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,7 +26,6 @@ public class NowPlayingFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_nowplaying, container, false);
 
         movieModelList = new ArrayList<>();
-
 
         initMovieList();
 
