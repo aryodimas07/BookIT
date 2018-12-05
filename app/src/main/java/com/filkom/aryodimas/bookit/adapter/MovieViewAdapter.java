@@ -1,4 +1,4 @@
-package com.filkom.aryodimas.bookit;
+package com.filkom.aryodimas.bookit.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,15 +7,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.filkom.aryodimas.bookit.R;
+import com.filkom.aryodimas.bookit.model.MovieModel;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class MovieViewAdapter extends RecyclerView.Adapter<MovieViewAdapter.MovieViewHolder>{
-    private Context mContext;
-    private ArrayList<Movie> movieList;
 
-    public MovieViewAdapter(Context mContext, ArrayList<Movie> orderList) {
+    private Context mContext;
+    private ArrayList<MovieModel> movieModelList;
+
+    public MovieViewAdapter(Context mContext, ArrayList<MovieModel> orderList) {
         this.mContext = mContext;
-        this.movieList = orderList;
+        this.movieModelList = orderList;
     }
 
     @Override
@@ -26,14 +31,14 @@ public class MovieViewAdapter extends RecyclerView.Adapter<MovieViewAdapter.Movi
 
     @Override
     public void onBindViewHolder(MovieViewHolder holder, final int position) {
-        Movie movie = movieList.get(position);
+        MovieModel movieModel = movieModelList.get(position);
 
-        holder.ivMovie.setImageResource(movie.movPicId);
+        Picasso.with(mContext).load(movieModel.getMoviePicUrl()).fit().into(holder.ivMovie);
     }
 
     @Override
     public int getItemCount() {
-        return movieList.size();
+        return movieModelList.size();
     }
 
     public class MovieViewHolder extends RecyclerView.ViewHolder{

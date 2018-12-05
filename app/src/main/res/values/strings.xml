@@ -14,5 +14,13 @@
     <string name="title_movie">Title Movie</string>
     <string name="detail_movie">Detail Movie</string>
     <string name="date_movie">Release Date</string>
+    <string name="random_id">#0001BIT</string>
+    <string name="price_order">Rp. 50.000</string>
+    <string name="cinema_location">Cinema XXI</string>
 
+    <string name="image_movie_1">https://www.joblo.com/assets/images/joblo/posters/2018/12/captain_marvel.jpg</string>
+    <string name="image_movie_2">https://www.joblo.com/assets/images/joblo/posters/2018/12/once-upon-a-deadpool-poster-heaven.jpg</string>
+    <string name="image_movie_3">https://www.joblo.com/assets/images/joblo/posters/2018/11/bumblebee-final-poster.jpg</string>
+    <string name="image_movie_4">https://www.joblo.com/assets/images/joblo/posters/2018/11/aquaman-charaposter1-xl.jpg</string>
+    <string name="image_movie_5">https://www.joblo.com/assets/images/joblo/posters/2018/11/replicasfinaltrailerposter.jpg</string>
 </resources>

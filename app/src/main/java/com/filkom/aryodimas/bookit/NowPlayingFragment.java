@@ -8,11 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.filkom.aryodimas.bookit.adapter.MovieViewAdapter;
+import com.filkom.aryodimas.bookit.model.MovieModel;
+
 import java.util.ArrayList;
 
 public class NowPlayingFragment extends Fragment {
 
-    ArrayList<Movie> movieList;
+    ArrayList<MovieModel> movieModelList;
 
 
     @Override
@@ -21,25 +24,25 @@ public class NowPlayingFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_nowplaying, container, false);
 
-        movieList = new ArrayList<>();
+        movieModelList = new ArrayList<>();
 
 
         initMovieList();
 
         RecyclerView recyclerView = v.findViewById(R.id.rv_nowplaying);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        MovieViewAdapter adapter = new MovieViewAdapter(getContext(), movieList);
+        MovieViewAdapter adapter = new MovieViewAdapter(getContext(), movieModelList);
         recyclerView.setAdapter(adapter);
 
         return v;
     }
 
     private void initMovieList() {
-        movieList.add(new Movie("Title", "Description", 4, "11-12-2018", R.drawable.ic_launcher_background));
-        movieList.add(new Movie("Title", "Description", 4, "11-12-2018", R.drawable.ic_launcher_background));
-        movieList.add(new Movie("Title", "Description", 4, "11-12-2018", R.drawable.ic_launcher_background));
-        movieList.add(new Movie("Title", "Description", 4, "11-12-2018", R.drawable.ic_launcher_background));
-        movieList.add(new Movie("Title", "Description", 4, "11-12-2018", R.drawable.ic_launcher_background));
+        movieModelList.add(new MovieModel("Title", "Description", 4, "11-12-2018", getString(R.string.image_movie_5)));
+        movieModelList.add(new MovieModel("Title", "Description", 4, "11-12-2018", getString(R.string.image_movie_4)));
+        movieModelList.add(new MovieModel("Title", "Description", 4, "11-12-2018", getString(R.string.image_movie_3)));
+        movieModelList.add(new MovieModel("Title", "Description", 4, "11-12-2018", getString(R.string.image_movie_2)));
+        movieModelList.add(new MovieModel("Title", "Description", 4, "11-12-2018", getString(R.string.image_movie_1)));
     }
 
 
