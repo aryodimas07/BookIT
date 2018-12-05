@@ -1,19 +1,18 @@
 <resources>
     <string name="app_name">BookIT</string>
+
+    <string name="now_playing">Now Playing</string>
+    <string name="hot_movie">Hot Movie</string>
+    <string name="search_movie">Search Movie</string>
     <string name="movie_title">Movie Title</string>
-
-    <string name="movie_summary_detail">
-       Movie Summary
-
-    </string>
-
+    <string name="movie_summary_detail">Movie Summary</string>
     <string name="book_movie">Book</string>
     <string name="nav_home_page">Home Page</string>
     <string name="nav_order_history">Order History</string>
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_movie">Title Movie</string>
     <string name="detail_movie">Detail Movie</string>
     <string name="date_movie">Release Date</string>
+
 </resources>

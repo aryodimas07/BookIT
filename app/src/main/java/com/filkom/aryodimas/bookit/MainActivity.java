@@ -18,21 +18,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        if(findViewById(R.id.main_frame) != null){
-            if(savedInstanceState != null){
-                return;
-            }
-
-            MovieListFragment movieListFragment = new MovieListFragment();
-
-            movieListFragment.setArguments(getIntent().getExtras());
-
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.main_frame,movieListFragment).commit();
-
-        }
-
+        
+        getNowPlayingFragment();
+        getHotMovieFragment();
+    }
+    
+    private void getNowPlayingFragment(){
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment1Container, new NowPlayingFragment()).commit();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -92,4 +84,10 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private void getHotMovieFragment() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment2Container, new HotMovieFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment3Container, new HotMovieFragment()).commit();
+    }
+
 }
