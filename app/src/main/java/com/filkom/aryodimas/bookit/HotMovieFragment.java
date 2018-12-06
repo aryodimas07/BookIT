@@ -37,11 +37,11 @@ public class HotMovieFragment extends Fragment {
     }
 
     private void initMovieList() {
-        movieModelList.add(new MovieModel("Title", "Description", 4, "11-12-2018", getString(R.string.image_movie_1)));
-        movieModelList.add(new MovieModel("Title", "Description", 4, "11-12-2018", getString(R.string.image_movie_2)));
-        movieModelList.add(new MovieModel("Title", "Description", 4, "11-12-2018", getString(R.string.image_movie_3)));
-        movieModelList.add(new MovieModel("Title", "Description", 4, "11-12-2018", getString(R.string.image_movie_4)));
-        movieModelList.add(new MovieModel("Title", "Description", 4, "11-12-2018", getString(R.string.image_movie_5)));
+        movieModelList.add(new MovieModel("Captain Marvel", "Description", 4, "11-12-2018", getString(R.string.image_movie_1)));
+        movieModelList.add(new MovieModel("Deadpool", "Description", 4, "11-12-2018", getString(R.string.image_movie_2)));
+        movieModelList.add(new MovieModel("Bumblebee", "Description", 4, "11-12-2018", getString(R.string.image_movie_3)));
+        movieModelList.add(new MovieModel("Aquaman", "Description", 4, "11-12-2018", getString(R.string.image_movie_4)));
+        movieModelList.add(new MovieModel("Replica", "Description", 4, "11-12-2018", getString(R.string.image_movie_5)));
     }
 
 

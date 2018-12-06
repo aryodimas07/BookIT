@@ -41,6 +41,7 @@ public class MovieViewAdapter extends RecyclerView.Adapter<MovieViewAdapter.Movi
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, BookFilmActivity.class);
                 intent.putExtra("title", movieModel.getTitle());
+                intent.putExtra("duration", mContext.getString(R.string.movie_duration));
                 mContext.startActivity(intent);
             }
         });

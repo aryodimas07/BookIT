@@ -1,6 +1,13 @@
 package com.filkom.aryodimas.bookit;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.os.Build;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -9,22 +16,55 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
-public class BookFilmActivity extends AppCompatActivity {
+public class BookFilmActivity extends AppCompatActivity implements View.OnClickListener {
 
     private DrawerLayout mDrawerLayout;
+    private Button btn_buy_ticket;
+    private TextView tv_title_movie,tv_book_date,tv_movie_duration;
+
+    private static final String CHANNEL_ID ="BOOKIT_ID_NOTIFICATION_CHANNEL";
+    private NotificationCompat.Builder notifyOrderBuilder;
+    private NotificationManager notifyOrderManager;
+    private static final int NOTIFICATION_ORDER_ID = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_film);
-
-//        initNavbar();
+        createNotificationChannel();
+        notifyOrderManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        initNavbar();
         initSpinner();
+
+        tv_title_movie = findViewById(R.id.tv_movie_title_book);
+        tv_book_date = findViewById(R.id.tv_date_book);
+        tv_movie_duration = findViewById(R.id.tv_duration_movie_book);
+        btn_buy_ticket = findViewById(R.id.btn_buy);
+        btn_buy_ticket.setOnClickListener(this);
+
+        initView();
+    }
+
+    private void initView(){
+        tv_title_movie.setText(getIntent().getStringExtra("title"));
+
+        Date now = new Date();
+        String nowAsString = new SimpleDateFormat("MM-dd-yyyy", Locale.ENGLISH).format(now);
+        tv_book_date.setText(nowAsString);
+
+        tv_movie_duration.setText(getIntent().getStringExtra("duration"));
     }
 
     private void initSpinner() {
@@ -60,48 +100,42 @@ public class BookFilmActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
-        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+    }
 
-        mDrawerLayout = findViewById(R.id.drawer_layout);
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.btn_buy:
+                Intent toOrderHistory = new Intent(this,OrderHistoryActivity.class);
+                toOrderHistory.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                PendingIntent pendingIntent = PendingIntent.getActivity(this,0,toOrderHistory,PendingIntent.FLAG_UPDATE_CURRENT);
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        // set item as selected to persist highlight
-                        menuItem.setChecked(true);
-                        // close drawer when item is tapped
-                        mDrawerLayout.closeDrawers();
+                notifyOrderBuilder = new NotificationCompat.Builder(this,CHANNEL_ID)
+                        .setContentTitle(getString(R.string.order_ticket_success))
+                        .setContentText(getString(R.string.complete_paymet))
+                        .setSmallIcon(R.drawable.ic_ticket_confirmation)
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                        .setContentIntent(pendingIntent)
+                        .setAutoCancel(true);
 
-                        // Add code here to update the UI based on the item selected
-                        // For example, swap UI fragments here
+                Notification orderNotification = notifyOrderBuilder.build();
+                notifyOrderManager.notify(NOTIFICATION_ORDER_ID,orderNotification);
 
-                        return true;
-                    }
-                });
-        mDrawerLayout.addDrawerListener(
-                new DrawerLayout.DrawerListener() {
-                    @Override
-                    public void onDrawerSlide(View drawerView, float slideOffset) {
-                        // Respond when the drawer's position changes
-                    }
+                startActivity(toOrderHistory);
+                break;
+        }
+    }
 
-                    @Override
-                    public void onDrawerOpened(View drawerView) {
-                        // Respond when the drawer is opened
-                    }
+    private void createNotificationChannel(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            CharSequence name = getString(R.string.channel_name);
+            String description = getString(R.string.channel_description);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID,name,importance);
+            channel.setDescription(description);
 
-                    @Override
-                    public void onDrawerClosed(View drawerView) {
-                        // Respond when the drawer is closed
-                    }
-
-                    @Override
-                    public void onDrawerStateChanged(int newState) {
-                        // Respond when the drawer motion state changes
-                    }
-                }
-        );
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 }

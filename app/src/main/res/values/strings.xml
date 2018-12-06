@@ -30,4 +30,9 @@
     <string name="image_movie_3">https://www.joblo.com/assets/images/joblo/posters/2018/11/bumblebee-final-poster.jpg</string>
     <string name="image_movie_4">https://www.joblo.com/assets/images/joblo/posters/2018/11/aquaman-charaposter1-xl.jpg</string>
     <string name="image_movie_5">https://www.joblo.com/assets/images/joblo/posters/2018/11/replicasfinaltrailerposter.jpg</string>
+    <string name="channel_name">BookIT-Notification-Channel</string>
+    <string name="channel_description">Notification for buying a movie ticket</string>
+    <string name="order_ticket_success">Order Ticket Success</string>
+    <string name="complete_paymet">Pleas complete the payment</string>
+    <string name="movie_duration">125 Minutes</string>
 </resources>
