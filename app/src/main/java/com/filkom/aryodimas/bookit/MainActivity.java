@@ -1,18 +1,24 @@
 package com.filkom.aryodimas.bookit;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     private DrawerLayout mDrawerLayout;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,17 +26,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initNavbar();
+        setupSharedPreferences();
         getNowPlayingFragment();
         getHotMovieFragment();
     }
 
     private void initNavbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
-        actionbar.setDisplayHomeAsUpEnabled(true);
-        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
-
+        if (actionbar !=null ){
+            actionbar.setDisplayHomeAsUpEnabled(true);
+            actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+        }
         mDrawerLayout = findViewById(R.id.drawer_layout);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -40,12 +48,18 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         // set item as selected to persist highlight
                         menuItem.setChecked(true);
+
                         // close drawer when item is tapped
                         mDrawerLayout.closeDrawers();
 
                         // Add code here to update the UI based on the item selected
                         // For example, swap UI fragments here
-
+                        switch (menuItem.getItemId()){
+                            case R.id.nav_order_history:
+                                Intent goToOrderhistory = new Intent(MainActivity.this,OrderHistoryActivity.class);
+                                startActivity(goToOrderhistory);
+                                break;
+                        }
                         return true;
                     }
                 });
@@ -74,8 +88,43 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
+    private void setupSharedPreferences() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        loadToolbarColor(sharedPreferences);
+
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+    }
+
+    private void loadToolbarColor(SharedPreferences sharedPreferences){
+        String color = sharedPreferences.getString(getString(R.string.pref_color_key)
+                ,getString(R.string.pref_color_white_value));
+        if (color != null) {
+            if(color.equalsIgnoreCase(this.getString(R.string.pref_color_white_value))){
+                toolbar.setBackgroundColor(getResources().getColor(R.color.white_toolbar));
+            } else if(color.equalsIgnoreCase(this.getString(R.string.pref_color_red_value))){
+                toolbar.setBackgroundColor(getResources().getColor(R.color.red_toolbar));
+            } else {
+                toolbar.setBackgroundColor(getResources().getColor(R.color.eggshell_toolbar));
+            }
+        }
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        if (s.equals(getString(R.string.pref_color_key))){
+            loadToolbarColor(sharedPreferences);
+        }
+    }
+
     private void getNowPlayingFragment(){
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment1Container, new NowPlayingFragment()).commit();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.setting_menu,menu);
+        return true;
     }
 
     @Override
@@ -84,13 +133,15 @@ public class MainActivity extends AppCompatActivity {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
+            case R.id.action_settings:
+                Intent startSettingActivity = new Intent(this,SettingsActivity.class);
+                startActivity(startSettingActivity);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void getHotMovieFragment() {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment2Container, new HotMovieFragment()).commit();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment3Container, new HotMovieFragment()).commit();
     }
-
 }

@@ -35,7 +35,8 @@ public class MovieViewAdapter extends RecyclerView.Adapter<MovieViewAdapter.Movi
     public void onBindViewHolder(MovieViewHolder holder, final int position) {
         final MovieModel movieModel = movieModelList.get(position);
 
-        Picasso.with(mContext).load(movieModel.getMoviePicUrl()).fit().into(holder.ivMovie);
+        Picasso.with(mContext).load(movieModel.getMoviePicUrl()).fit().
+                into(holder.ivMovie);
         holder.ivMovie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,5 +1,6 @@
 package com.filkom.aryodimas.bookit;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -48,7 +49,12 @@ public class OrderHistoryActivity extends AppCompatActivity {
 
                         // Add code here to update the UI based on the item selected
                         // For example, swap UI fragments here
-
+                        switch (menuItem.getItemId()){
+                            case R.id.nav_order_history:
+                                Intent goToOrderhistory = new Intent(OrderHistoryActivity.this,MainActivity.class);
+                                startActivity(goToOrderhistory);
+                                break;
+                        }
                         return true;
                     }
                 });

@@ -35,4 +35,18 @@
     <string name="order_ticket_success">Order Ticket Success</string>
     <string name="complete_paymet">Pleas complete the payment</string>
     <string name="movie_duration">125 Minutes</string>
+
+    <string name="pref_color_white_value" translatable="false">White</string>
+    <string name="pref_color_eggshell_value" translatable="false">Egshell</string>
+    <string name="pref_color_red_value" translatable="false">Red</string>
+    <string name="pref_color_label_white">White</string>
+    <string name="pref_color_label_eggshell">Eggshell</string>
+    <string name="pref_color_label_red">Red</string>
+
+    <string name="pref_color_key" translatable="false">color</string>
+    <string name="pref_color_label">Toolbar Color</string>
+    <string name="action_settings">Settings</string>
+    <string name="username">Joni</string>
+
+
 </resources>
