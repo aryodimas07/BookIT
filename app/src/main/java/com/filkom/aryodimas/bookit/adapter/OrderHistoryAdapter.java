@@ -39,7 +39,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
         historyViewHolder.tv_order_id.setText(orderHistoryModel.getOrderId());
         historyViewHolder.tv_cinema_location.setText(orderHistoryModel.getCinemaLocation());
         historyViewHolder.tv_total_price.setText(orderHistoryModel.getTotalPrice());
-        historyViewHolder.iv_order_image.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.ic_history_black_24dp));
+        historyViewHolder.iv_order_image.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.ic_ticket_confirmation));
     }
 
     @Override

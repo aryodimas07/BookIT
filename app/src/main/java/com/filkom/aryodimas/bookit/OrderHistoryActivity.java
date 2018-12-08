@@ -50,7 +50,7 @@ public class OrderHistoryActivity extends AppCompatActivity {
                         // Add code here to update the UI based on the item selected
                         // For example, swap UI fragments here
                         switch (menuItem.getItemId()){
-                            case R.id.nav_order_history:
+                            case R.id.nav_homepage:
                                 Intent goToOrderhistory = new Intent(OrderHistoryActivity.this,MainActivity.class);
                                 startActivity(goToOrderhistory);
                                 break;
