@@ -38,6 +38,10 @@ public class BookFilmActivity extends AppCompatActivity implements View.OnClickL
     private NotificationManager notifyOrderManager;
     private static final int NOTIFICATION_ORDER_ID = 0;
 
+    private Button btn_c1,btn_c2,btn_c3,btn_c4;
+    private boolean booleanClick;
+    private MainActivity mainActivity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +58,16 @@ public class BookFilmActivity extends AppCompatActivity implements View.OnClickL
         btn_buy_ticket = findViewById(R.id.btn_buy);
         btn_buy_ticket.setOnClickListener(this);
 
+        btn_c1 = findViewById(R.id.c1);
+        btn_c2 = findViewById(R.id.c2);
+        btn_c3 = findViewById(R.id.c3);
+        btn_c4 = findViewById(R.id.c4);
+
+        btn_c1.setOnClickListener(this);
+        btn_c2.setOnClickListener(this);
+        btn_c3.setOnClickListener(this);
+        btn_c4.setOnClickListener(this);
+
         initView();
     }
 
@@ -68,7 +82,7 @@ public class BookFilmActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void initSpinner() {
-        Spinner spinnerLoc = (Spinner) findViewById(R.id.spinner_location);
+        Spinner spinnerLoc = findViewById(R.id.spinner_location);
 
         List<String> location = new ArrayList<String>();
         location.add("Malang");
@@ -93,13 +107,18 @@ public class BookFilmActivity extends AppCompatActivity implements View.OnClickL
         dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinnerTicket.setAdapter(dataAdapter1);
+
     }
+
+
 
     private void initNavbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
-        actionbar.setDisplayHomeAsUpEnabled(true);
+        if (actionbar !=null ){
+            actionbar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override
@@ -123,6 +142,30 @@ public class BookFilmActivity extends AppCompatActivity implements View.OnClickL
 
                 startActivity(toOrderHistory);
                 break;
+
+            case R.id.c1 :
+               changeSeatColor(view);
+                break;
+            case R.id.c2 :
+                changeSeatColor(view);
+                break;
+            case R.id.c3 :
+                changeSeatColor(view);
+                break;
+            case R.id.c4 :
+                changeSeatColor(view);
+                break;
+
+        }
+    }
+
+    private void changeSeatColor(View view){
+        if (booleanClick){
+            view.setBackground(getResources().getDrawable(R.drawable.pressed_seat_button));
+            booleanClick = false;
+        } else {
+            view.setBackground(getResources().getDrawable(R.drawable.default_button));
+            booleanClick = true;
         }
     }
 
