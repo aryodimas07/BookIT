@@ -2,7 +2,7 @@
     <string name="app_name">BookIT</string>
 
     <string name="now_playing">Now Playing</string>
-    <string name="hot_movie">Hot Movie</string>
+    <string name="hot_movie">Coming Soon</string>
     <string name="search_movie">Search Movie</string>
     <string name="movie_title">Movie Title</string>
     <string name="movie_summary_detail">Movie Summary</string>

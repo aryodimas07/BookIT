@@ -40,7 +40,9 @@ public class BookFilmActivity extends AppCompatActivity implements View.OnClickL
 
     private Button btn_c1,btn_c2,btn_c3,btn_c4;
     private boolean booleanClick;
-    private MainActivity mainActivity;
+    private Spinner spinnerLoc,spinnerTicket;
+
+    private String locationChoice,countTicket;
 
 
     @Override
@@ -82,7 +84,7 @@ public class BookFilmActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void initSpinner() {
-        Spinner spinnerLoc = findViewById(R.id.spinner_location);
+        spinnerLoc = findViewById(R.id.spinner_location);
 
         List<String> location = new ArrayList<String>();
         location.add("Malang");
@@ -95,19 +97,20 @@ public class BookFilmActivity extends AppCompatActivity implements View.OnClickL
 
         spinnerLoc.setAdapter(dataAdapter);
 
-        Spinner spinnerTicket = (Spinner) findViewById(R.id.spinner_tickets);
+        spinnerTicket = findViewById(R.id.spinner_tickets);
 
         List<String> tickets = new ArrayList<String>();
         tickets.add("1");
         tickets.add("2");
         tickets.add("3");
+        tickets.add("4");
+        tickets.add("5");
 
         ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tickets);
 
         dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinnerTicket.setAdapter(dataAdapter1);
-
     }
 
 
@@ -140,6 +143,12 @@ public class BookFilmActivity extends AppCompatActivity implements View.OnClickL
                 Notification orderNotification = notifyOrderBuilder.build();
                 notifyOrderManager.notify(NOTIFICATION_ORDER_ID,orderNotification);
 
+                locationChoice = spinnerLoc.getSelectedItem().toString();
+                countTicket = spinnerTicket.getSelectedItem().toString();
+
+                toOrderHistory.putExtra("CINEMA_LOCATION",locationChoice);
+                toOrderHistory.putExtra("COUNT_TICKET",countTicket);
+                toOrderHistory.putExtra("MOVIE_CHOICE",getIntent().getStringExtra("title"));
                 startActivity(toOrderHistory);
                 break;
 

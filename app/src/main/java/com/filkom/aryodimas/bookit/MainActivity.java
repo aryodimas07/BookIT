@@ -3,6 +3,7 @@ package com.filkom.aryodimas.bookit;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -15,8 +16,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.filkom.aryodimas.bookit.model.MovieModel;
 
-public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+
+public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener,
+        NowPlayingFragment.SendMovieDataToDetail,HotMovieFragment.SendMovieDataToDetail {
     private DrawerLayout mDrawerLayout;
     Toolbar toolbar;
 
@@ -143,5 +147,21 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     private void getHotMovieFragment() {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment2Container, new HotMovieFragment()).commit();
+    }
+
+    @Override
+    public void sendModelData(MovieModel movieModel) {
+        MovieDetailFragment movieDetailFragment = new MovieDetailFragment();
+        Bundle args = new Bundle();
+        args.putString("MOVIE_TITLE",movieModel.getTitle());
+        args.putString("MOVIE_IMAGE",movieModel.getMoviePicUrl());
+        args.putString("MOVIE_SUMMARY",movieModel.getDesc());
+        movieDetailFragment.setArguments(args);
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment1Container,movieDetailFragment);
+        transaction.addToBackStack(null);
+
+        transaction.commit();
     }
 }

@@ -32,10 +32,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/cinema_location"
+            android:layout_marginTop="4dp"
             android:layout_marginLeft="4dp"
             android:layout_marginStart="4dp"
             app:layout_constraintLeft_toRightOf="@id/iv_order_history"
             app:layout_constraintTop_toBottomOf="@id/tv_order_id"/>
+
+        <TextView
+            android:id="@+id/tv_movie_title_choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/movie_title"
+            android:textStyle="bold"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            app:layout_constraintLeft_toRightOf="@id/iv_order_history"
+            app:layout_constraintTop_toBottomOf="@id/tv_cinema_location"/>
 
         <TextView
             android:id="@+id/tv_price_order"

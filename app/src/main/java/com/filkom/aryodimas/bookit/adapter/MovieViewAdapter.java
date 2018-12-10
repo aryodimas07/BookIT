@@ -20,9 +20,12 @@ public class MovieViewAdapter extends RecyclerView.Adapter<MovieViewAdapter.Movi
     private Context mContext;
     private ArrayList<MovieModel> movieModelList;
 
-    public MovieViewAdapter(Context mContext, ArrayList<MovieModel> orderList) {
+    private MovieAdapterInterface adapterInterface;
+
+    public MovieViewAdapter(Context mContext, ArrayList<MovieModel> orderList,MovieAdapterInterface adapterInterface) {
         this.mContext = mContext;
         this.movieModelList = orderList;
+        this.adapterInterface = adapterInterface;
     }
 
     @Override
@@ -40,10 +43,11 @@ public class MovieViewAdapter extends RecyclerView.Adapter<MovieViewAdapter.Movi
         holder.ivMovie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, BookFilmActivity.class);
-                intent.putExtra("title", movieModel.getTitle());
-                intent.putExtra("duration", mContext.getString(R.string.movie_duration));
-                mContext.startActivity(intent);
+//                Intent intent = new Intent(mContext, BookFilmActivity.class);
+//                intent.putExtra("title", movieModel.getTitle());
+//                intent.putExtra("duration", mContext.getString(R.string.movie_duration));
+//                mContext.startActivity(intent);
+                adapterInterface.OnItemClicked(movieModel);
             }
         });
     }
@@ -51,6 +55,10 @@ public class MovieViewAdapter extends RecyclerView.Adapter<MovieViewAdapter.Movi
     @Override
     public int getItemCount() {
         return movieModelList.size();
+    }
+
+    public interface MovieAdapterInterface{
+        void OnItemClicked(MovieModel movieModel);
     }
 
     public class MovieViewHolder extends RecyclerView.ViewHolder{

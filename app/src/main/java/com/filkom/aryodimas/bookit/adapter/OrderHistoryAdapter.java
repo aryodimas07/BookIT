@@ -39,6 +39,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
         historyViewHolder.tv_order_id.setText(orderHistoryModel.getOrderId());
         historyViewHolder.tv_cinema_location.setText(orderHistoryModel.getCinemaLocation());
         historyViewHolder.tv_total_price.setText(orderHistoryModel.getTotalPrice());
+        historyViewHolder.tv_movie_choice.setText(orderHistoryModel.getMovieChoice());
         historyViewHolder.iv_order_image.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.ic_ticket_confirmation));
     }
 
@@ -48,7 +49,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
     }
 
     class HistoryViewHolder extends RecyclerView.ViewHolder {
-        TextView tv_order_id,tv_cinema_location,tv_total_price;
+        TextView tv_order_id,tv_cinema_location,tv_total_price,tv_movie_choice;
         ImageView iv_order_image;
 
         public HistoryViewHolder(View itemView){
@@ -56,6 +57,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
             tv_order_id = itemView.findViewById(R.id.tv_order_id);
             tv_cinema_location = itemView.findViewById(R.id.tv_cinema_location);
             tv_total_price = itemView.findViewById(R.id.tv_price_order);
+            tv_movie_choice = itemView.findViewById(R.id.tv_movie_title_choice);
             iv_order_image = itemView.findViewById(R.id.iv_order_history);
         }
     }

@@ -1,5 +1,6 @@
 package com.filkom.aryodimas.bookit;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 public class HotMovieFragment extends Fragment {
 
     ArrayList<MovieModel> movieModelList;
+    private SendMovieDataToDetail movieDataToDetail;
 
 
     @Override
@@ -30,10 +32,36 @@ public class HotMovieFragment extends Fragment {
 
         RecyclerView recyclerView = v.findViewById(R.id.rv_hotmovie);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        MovieViewAdapter adapter = new MovieViewAdapter(getContext(), movieModelList);
+        MovieViewAdapter adapter = new MovieViewAdapter(getContext(), movieModelList,adapterInterface);
         recyclerView.setAdapter(adapter);
 
         return v;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            movieDataToDetail = (SendMovieDataToDetail) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement OnTextSendListener");
+        }
+    }
+
+    MovieViewAdapter.MovieAdapterInterface adapterInterface = new MovieViewAdapter.MovieAdapterInterface() {
+        @Override
+        public void OnItemClicked(MovieModel movieModel) {
+            sendModelData(movieModel);
+        }
+    };
+
+    public void sendModelData(MovieModel movieModel){
+        movieDataToDetail.sendModelData(movieModel);
+    }
+
+    public interface SendMovieDataToDetail{
+        void sendModelData(MovieModel movieModel);
     }
 
     private void initMovieList() {

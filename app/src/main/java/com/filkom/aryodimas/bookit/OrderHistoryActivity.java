@@ -17,6 +17,8 @@ import android.view.View;
 import com.filkom.aryodimas.bookit.adapter.OrderHistoryAdapter;
 import com.filkom.aryodimas.bookit.model.OrderHistoryModel;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 
 public class OrderHistoryActivity extends AppCompatActivity {
@@ -97,9 +99,20 @@ public class OrderHistoryActivity extends AppCompatActivity {
 
     public void initializeOrderHistory(){
         ArrayList<OrderHistoryModel> orderHistoryModels = new ArrayList<>();
-        orderHistoryModels.add(new OrderHistoryModel("#0001BIT","Rp. 60.000","Cinema XXI"));
-        orderHistoryModels.add(new OrderHistoryModel("#0002BIT","Rp. 120.000","Cinema XXI"));
-        orderHistoryModels.add(new OrderHistoryModel("#0003BIT","Rp. 80.000","Cinema XXI"));
+
+        DecimalFormat currencyIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols rupiahFormat = new DecimalFormatSymbols();
+
+        rupiahFormat.setCurrencySymbol("Rp. ");
+        rupiahFormat.setMonetaryDecimalSeparator(',');
+        rupiahFormat.setGroupingSeparator('.');
+        currencyIndonesia.setDecimalFormatSymbols(rupiahFormat);
+
+        int totalPrice = Integer.parseInt(getIntent().getStringExtra("COUNT_TICKET"))*30000;
+        String cinemaLocation = getIntent().getStringExtra("CINEMA_LOCATION").concat(" XXI");
+        String movieChoice = getIntent().getStringExtra("MOVIE_CHOICE");
+
+        orderHistoryModels.add(new OrderHistoryModel("#0001BIT",currencyIndonesia.format(totalPrice),cinemaLocation,movieChoice));
 
         RecyclerView recyclerView = findViewById(R.id.rv_order_history);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

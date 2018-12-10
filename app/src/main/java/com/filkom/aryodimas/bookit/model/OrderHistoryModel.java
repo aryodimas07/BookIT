@@ -4,14 +4,16 @@ public class OrderHistoryModel {
     private String orderId;
     private String totalPrice;
     private String cinemaLocation;
+    private String movieChoice;
 
     public OrderHistoryModel() {
     }
 
-    public OrderHistoryModel(String orderId, String totalPrice, String cinemaLocation) {
+    public OrderHistoryModel(String orderId, String totalPrice, String cinemaLocation,String movieChoice) {
         this.orderId = orderId;
         this.totalPrice = totalPrice;
         this.cinemaLocation = cinemaLocation;
+        this.movieChoice = movieChoice;
     }
 
     public String getOrderId() {
@@ -38,5 +40,11 @@ public class OrderHistoryModel {
         this.cinemaLocation = cinemaLocation;
     }
 
+    public String getMovieChoice() {
+        return movieChoice;
+    }
 
+    public void setMovieChoice(String movieChoice) {
+        this.movieChoice = movieChoice;
+    }
 }
