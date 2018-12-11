@@ -65,10 +65,10 @@ public class NowPlayingFragment extends Fragment {
     }
 
     private void initMovieList() {
-        movieModelList.add(new MovieModel("Replica", "Random movie", 4, "11-12-2018", getString(R.string.image_movie_5)));
-        movieModelList.add(new MovieModel("Aquaman", "Family movie", 4, "11-12-2018", getString(R.string.image_movie_4)));
-        movieModelList.add(new MovieModel("Bumblebee", "Car Movie", 4, "11-12-2018", getString(R.string.image_movie_3)));
-        movieModelList.add(new MovieModel("Deadpool", "Family Movie", 4, "11-12-2018", getString(R.string.image_movie_2)));
-        movieModelList.add(new MovieModel("Captain Marvel", "Superhero Movie", 4, "11-12-2018", getString(R.string.image_movie_1)));
+        movieModelList.add(new MovieModel("Replica", getString(R.string.movie_desc_dummy), 4, "11-12-2018", getString(R.string.image_movie_5)));
+        movieModelList.add(new MovieModel("Aquaman", getString(R.string.movie_desc_dummy), 4, "11-12-2018", getString(R.string.image_movie_4)));
+        movieModelList.add(new MovieModel("Bumblebee", getString(R.string.movie_desc_dummy), 4, "11-12-2018", getString(R.string.image_movie_3)));
+        movieModelList.add(new MovieModel("Deadpool", getString(R.string.movie_desc_dummy), 4, "11-12-2018", getString(R.string.image_movie_2)));
+        movieModelList.add(new MovieModel("Captain Marvel", getString(R.string.movie_desc_dummy), 4, "11-12-2018", getString(R.string.image_movie_1)));
     }
 }
