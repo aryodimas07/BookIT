@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.filkom.aryodimas.bookit.adapter.MovieViewAdapter;
 import com.filkom.aryodimas.bookit.model.MovieModel;
@@ -57,7 +58,7 @@ public class HotMovieFragment extends Fragment {
     };
 
     public void sendModelData(MovieModel movieModel){
-        movieDataToDetail.sendModelData(movieModel);
+        Toast.makeText(this.getContext(),getString(R.string.movie_coming_soon),Toast.LENGTH_SHORT).show();
     }
 
     public interface SendMovieDataToDetail{

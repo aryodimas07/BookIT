@@ -108,11 +108,13 @@ public class OrderHistoryActivity extends AppCompatActivity {
         rupiahFormat.setGroupingSeparator('.');
         currencyIndonesia.setDecimalFormatSymbols(rupiahFormat);
 
-        int totalPrice = Integer.parseInt(getIntent().getStringExtra("COUNT_TICKET"))*30000;
-        String cinemaLocation = getIntent().getStringExtra("CINEMA_LOCATION").concat(" XXI");
-        String movieChoice = getIntent().getStringExtra("MOVIE_CHOICE");
+        if(getIntent().getStringExtra("COUNT_TICKET") != null) {
+            int totalPrice = Integer.parseInt(getIntent().getStringExtra("COUNT_TICKET"))*30000;
+            String cinemaLocation = getIntent().getStringExtra("CINEMA_LOCATION").concat(" XXI");
+            String movieChoice = getIntent().getStringExtra("MOVIE_CHOICE");
 
-        orderHistoryModels.add(new OrderHistoryModel("#0001BIT",currencyIndonesia.format(totalPrice),cinemaLocation,movieChoice));
+            orderHistoryModels.add(new OrderHistoryModel("#0001BIT",currencyIndonesia.format(totalPrice),cinemaLocation,movieChoice));
+        }
 
         RecyclerView recyclerView = findViewById(R.id.rv_order_history);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

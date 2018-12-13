@@ -124,6 +124,10 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment1Container, new NowPlayingFragment()).commit();
     }
 
+    private void getHotMovieFragment() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment2Container, new HotMovieFragment()).commit();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -145,9 +149,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         return super.onOptionsItemSelected(item);
     }
 
-    private void getHotMovieFragment() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment2Container, new HotMovieFragment()).commit();
-    }
+
 
     @Override
     public void sendModelData(MovieModel movieModel) {
@@ -161,6 +163,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment1Container,movieDetailFragment);
         transaction.addToBackStack(null);
+
+        HotMovieFragment hotMovieFragment = (HotMovieFragment) getSupportFragmentManager().findFragmentById(R.id.fragment2Container);
+        if(hotMovieFragment != null){
+            transaction.remove(hotMovieFragment);
+        }
 
         transaction.commit();
     }
